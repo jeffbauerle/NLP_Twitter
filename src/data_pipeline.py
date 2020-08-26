@@ -205,8 +205,8 @@ if __name__ == "__main__":
 
 # Commented out
 # TF IDF
-# v = TfidfVectorizer()
-# x = v.fit_transform(all_df['text'])
+v = TfidfVectorizer()
+x = v.fit_transform(all_df['text'])
 
 
 # Load the library with the CountVectorizer method
@@ -297,5 +297,5 @@ plt.show()
 # seed_topics = {    'NASA': 0, 'SpaceX': 0,    'Apple': 1, 'Google': 1,    'Physics': 2, 'Chemistry': 2,}
 # model.fit(X, seed_topics=seed_topics, seed_confidence=0.15)
 
-model = guidedlda.GuidedLDA(n_topics=5, n_iter=100, random_state=7, refresh=20)
-model.fit(X)
+# model = guidedlda.GuidedLDA(n_topics=5, n_iter=100, random_state=7, refresh=20)
+# model.fit(X)
