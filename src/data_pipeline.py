@@ -23,7 +23,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 import gensim
 from gensim import corpora
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
-#  import guidedlda
+import guidedlda
 
 def load_twitter_df_from_file(filename):
     # directory = "../data/"
@@ -73,107 +73,118 @@ def vectorize(df, column, stop_words):
 if __name__ == "__main__":
     plt.rcParams.update({'font.size': 16})
     punc = punctuation
-    # checked 1
-    file1 = '../data/2020-06-05-14-11-03_timeline_twitter_pull_nike.json'
-    file1_df = load_twitter_df_from_file(file1)
-    print(file1_df.shape)
+    # # checked 1
+    # file1 = '../data/2020-06-05-14-11-03_timeline_twitter_pull_nike.json'
+    # file1_df = load_twitter_df_from_file(file1)
+    # print(file1_df.shape)
 
-    # checked 2
-    file2 = '../data/2020-06-05-14-11-29_search_twitter_pull_nike.json'
-    file2_df = load_twitter_df_from_file(file2)
+    # # checked 2
+    # file2 = '../data/2020-06-05-14-11-29_search_twitter_pull_nike.json'
+    # file2_df = load_twitter_df_from_file(file2)
 
-    # checked 3
-    file3 = '../data/2020-06-17-09-54-50_timeline_twitter_pull_nike.json'
-    file3_df = load_twitter_df_from_file(file3)
+    # # checked 3
+    # file3 = '../data/2020-06-17-09-54-50_timeline_twitter_pull_nike.json'
+    # file3_df = load_twitter_df_from_file(file3)
 
-    # checked 4
-    file4 = '../data/2020-06-17-09-55-17_search_twitter_pull_nike.json'
-    file4_df = load_twitter_df_from_file(file4)
+    # # checked 4
+    # file4 = '../data/2020-06-17-09-55-17_search_twitter_pull_nike.json'
+    # file4_df = load_twitter_df_from_file(file4)
 
-    # checked 5
-    file5 = '../data/2020-06-18-10-08-24_timeline_twitter_pull_nike.json'
-    file5_df = load_twitter_df_from_file(file5)
+    # # checked 5
+    # file5 = '../data/2020-06-18-10-08-24_timeline_twitter_pull_nike.json'
+    # file5_df = load_twitter_df_from_file(file5)
 
-    # checked 6
-    file6 = '../data/2020-06-18-10-08-50_search_twitter_pull_nike.json'
-    file6_df = load_twitter_df_from_file(file6)
+    # # checked 6
+    # file6 = '../data/2020-06-18-10-08-50_search_twitter_pull_nike.json'
+    # file6_df = load_twitter_df_from_file(file6)
 
-    # checked 7
-    file7 = '../data/2020-06-19-16-17-01_timeline_twitter_pull_nike.json'
-    file7_df = load_twitter_df_from_file(file7)
+    # # checked 7
+    # file7 = '../data/2020-06-19-16-17-01_timeline_twitter_pull_nike.json'
+    # file7_df = load_twitter_df_from_file(file7)
 
-    # checked 8
-    file8 = '../data/2020-06-19-16-17-28_search_twitter_pull_nike.json'
-    file8_df = load_twitter_df_from_file(file8)
+    # # checked 8
+    # file8 = '../data/2020-06-19-16-17-28_search_twitter_pull_nike.json'
+    # file8_df = load_twitter_df_from_file(file8)
 
-    # checked 9
-    file9 = '../data/2020-06-19-22-10-42_search_twitter_pull_nike.json'
-    file9_df = load_twitter_df_from_file(file9)
+    # # checked 9
+    # file9 = '../data/2020-06-19-22-10-42_search_twitter_pull_nike.json'
+    # file9_df = load_twitter_df_from_file(file9)
 
-    # checked 10
-    file10 = '../data/2020-07-09-11-17-25_search_twitter_pull_nike.json'
-    file10_df = load_twitter_df_from_file(file10)
+    # # checked 10
+    # file10 = '../data/2020-07-09-11-17-25_search_twitter_pull_nike.json'
+    # file10_df = load_twitter_df_from_file(file10)
 
-    # checked 11
-    file11 = '../data/2020-07-21-13-27-31_search_twitter_pull_nike.json'
-    file11_df = load_twitter_df_from_file(file11)
+    # # checked 11
+    # file11 = '../data/2020-07-21-13-27-31_search_twitter_pull_nike.json'
+    # file11_df = load_twitter_df_from_file(file11)
 
-    # checked 12
-    file12 = '../data/2020-07-21-13-40-34_search_twitter_pull_nike.json'
-    file12_df = load_twitter_df_from_file(file12)
+    # # checked 12
+    # file12 = '../data/2020-07-21-13-40-34_search_twitter_pull_nike.json'
+    # file12_df = load_twitter_df_from_file(file12)
 
-    # checked 13
-    file13 = '../data/2020-07-21-13-41-39_timeline_twitter_pull_nike.json'
-    file13_df = load_twitter_df_from_file(file13)
+    # # checked 13
+    # file13 = '../data/2020-07-21-13-41-39_timeline_twitter_pull_nike.json'
+    # file13_df = load_twitter_df_from_file(file13)
 
-    # checked 14
-    file14 = '../data/2020-07-29-12-47-41_search_twitter_pull_nike.json'
-    file14_df = load_twitter_df_from_file(file14)
+    # # checked 14
+    # file14 = '../data/2020-07-29-12-47-41_search_twitter_pull_nike.json'
+    # file14_df = load_twitter_df_from_file(file14)
 
-    # checked 15
-    file15 = '../data/2020-07-29-12-48-10_timeline_twitter_pull_nike.json'
-    file15_df = load_twitter_df_from_file(file15)
+    # # checked 15
+    # file15 = '../data/2020-07-29-12-48-10_timeline_twitter_pull_nike.json'
+    # file15_df = load_twitter_df_from_file(file15)
 
-    # checked 16
-    file16 = '../data/2020-08-20-11-33-17_search_twitter_pull_nike.json'
-    file16_df = load_twitter_df_from_file(file16)
+    # # checked 16
+    # file16 = '../data/2020-08-20-11-33-17_search_twitter_pull_nike.json'
+    # file16_df = load_twitter_df_from_file(file16)
 
-    # checked 17
-    file17 = '../data/2020-08-20-11-42-20_timeline_twitter_pull_nike.json'
-    file17_df = load_twitter_df_from_file(file17)
+    # # checked 17
+    # file17 = '../data/2020-08-20-11-42-20_timeline_twitter_pull_nike.json'
+    # file17_df = load_twitter_df_from_file(file17)
 
-    # checked 18
-    file18 = '../data/2020-08-20-11-50-20_timeline_twitter_pull_adidas.json'
-    file18_df = load_twitter_df_from_file(file18)
+    # # checked 18
+    # file18 = '../data/2020-08-20-11-50-20_timeline_twitter_pull_adidas.json'
+    # file18_df = load_twitter_df_from_file(file18)
 
-    # checked 19
-    file19 = '../data/2020-08-20-11-54-52_search_twitter_pull_adidas.json'
-    file19_df = load_twitter_df_from_file(file19)
+    # # checked 19
+    # file19 = '../data/2020-08-20-11-54-52_search_twitter_pull_adidas.json'
+    # file19_df = load_twitter_df_from_file(file19)
 
-    # checked 20
-    file20 = '../data/2020-08-20-11-55-23_timeline_twitter_pull_underarmour.json'
-    file20_df = load_twitter_df_from_file(file20)
+    # # checked 20
+    # file20 = '../data/2020-08-20-11-55-23_timeline_twitter_pull_underarmour.json'
+    # file20_df = load_twitter_df_from_file(file20)
 
-    # checked 21
-    file21 = '../data/2020-08-20-11-55-53_search_twitter_pull_adidas.json'
-    file21_df = load_twitter_df_from_file(file21)
+    # # checked 21
+    # file21 = '../data/2020-08-20-11-55-53_search_twitter_pull_adidas.json'
+    # file21_df = load_twitter_df_from_file(file21)
 
-    # checked 22
-    file22 = '../data/2020-08-20-11-58-18_search_twitter_pull_underarmour.json'
-    file22_df = load_twitter_df_from_file(file22)
+    # # checked 22
+    # file22 = '../data/2020-08-20-11-58-18_search_twitter_pull_underarmour.json'
+    # file22_df = load_twitter_df_from_file(file22)
 
-    # checked 23
-    file23 = '../data/2020-08-20-12-25-38_search_twitter_pull_underarmour.json'
-    file23_df = load_twitter_df_from_file(file23)
+    # # checked 23
+    # file23 = '../data/2020-08-20-12-25-38_search_twitter_pull_underarmour.json'
+    # file23_df = load_twitter_df_from_file(file23)
 
-    # checked 24
-    file24 = '../data/2020-08-20-12-43-07_search_twitter_pull_underarmour.json'
-    file24_df = load_twitter_df_from_file(file24)
+    # # checked 24
+    # file24 = '../data/2020-08-20-12-43-07_search_twitter_pull_underarmour.json'
+    # file24_df = load_twitter_df_from_file(file24)
 
 
-    all_df = pd.concat([file1_df, file2_df, file3_df, file4_df, file5_df, file6_df, file7_df, file8_df, 
-                        file9_df, file10_df, file11_df, file12_df, file13_df, file14_df, file15_df, file16_df, 
-                        file17_df, file18_df, file19_df, file20_df, file21_df, file22_df, file23_df, file24_df])
+    # all_df = pd.concat([file1_df, file2_df, file3_df, file4_df, file5_df, file6_df, file7_df, file8_df, 
+    #                     file9_df, file10_df, file11_df, file12_df, file13_df, file14_df, file15_df, file16_df, 
+    #                     file17_df, file18_df, file19_df, file20_df, file21_df, file22_df, file23_df, file24_df])
+    directory = "../data/"
+    df_list = []
+    for filename in os.listdir(directory):
+        if filename.endswith(".json"):
+            df_list.append(load_twitter_df_from_file("../data/"+filename))
+            print("../data/"+filename)
+            continue
+        else:
+            continue
+
+    all_df = pd.concat(df_list)
     print(all_df.head())
     print(all_df.tail())
     print(all_df.shape)
@@ -184,21 +195,6 @@ if __name__ == "__main__":
 # # df_namer = "df"
 # counter = 1
 
-# for filename in os.listdir(directory):
-#     my_dict = dict()
-#     df_namer = "df"
-#     if filename.endswith(".json"):
-#         #do smth
-#         # df_name = "df" + str(counter)
-#         # "df" + str(counter) = pd.DataFrame()
-#         # print(df_name)
-#         # print(Path(filename.stem))
-#         my_dict[df_namer+str(counter)] = load_twitter_df_from_file("../data/"+filename)
-#         counter += 1
-#         print("../data/"+filename)
-#         continue
-#     else:
-#         continue
 
 
 # print(my_dict)
@@ -294,8 +290,22 @@ plt.axis("off")
 plt.show()
 
 
-# seed_topics = {    'NASA': 0, 'SpaceX': 0,    'Apple': 1, 'Google': 1,    'Physics': 2, 'Chemistry': 2,}
+# seed_topics = {'coronavirus': 0, 'covid': 0, 'covid-19': 0, 'virus': 0,   
+#                'equality': 1, 'diversity': 1, 'placeholder': 1, 'placeholder': 1, 
+#                'climage': 2, 'environmental': 2, 'placeholder': 2, 'placeholder': 2,
+#                'business': 3, 'finance': 3, 'placeholder': 3, 'placeholder': 3,
+#                'other': 4, 'other': 4, 'other': 4, 'other': 4,
 # model.fit(X, seed_topics=seed_topics, seed_confidence=0.15)
 
 # model = guidedlda.GuidedLDA(n_topics=5, n_iter=100, random_state=7, refresh=20)
 # model.fit(X)
+
+# model = guidedlda.GuidedLDA(n_topics=5, n_iter=100, random_state=7, refresh=20)
+# model.fit(X)
+
+
+# topic_word = model.topic_word_
+# n_top_words = 8
+# for i, topic_dist in enumerate(topic_word):
+#     topic_words = np.array(vocab)[np.argsort(topic_dist)][:-(n_top_words+1):-1]
+#     print('Topic {}: {}'.format(i, ' '.join(topic_words)))
