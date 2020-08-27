@@ -18,12 +18,13 @@ from pathlib import Path
 from string import punctuation
 from bs4 import BeautifulSoup
 import nltk
-from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
+# from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 from sklearn.feature_extraction.text import TfidfVectorizer
 import gensim
 from gensim import corpora
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import guidedlda
+
 
 def load_twitter_df_from_file(filename):
     # directory = "../data/"
@@ -44,7 +45,8 @@ def lemmatize_str(string):
     # Lemmatize a string and return it in its original format
     w_tokenizer = nltk.tokenize.WhitespaceTokenizer()
     lemmatizer = nltk.stem.WordNetLemmatizer()
-    return " ".join([lemmatizer.lemmatize(w) for w in w_tokenizer.tokenize(string)])
+    return " ".join([lemmatizer.lemmatize(w) for w in w_tokenizer.tokenize(string) if "http" not in w])
+
 
 def clean_column(df, column):
     # Apply data cleaning pipeline to a given pandas DataFrame column
@@ -55,7 +57,7 @@ def clean_column(df, column):
 
 def get_stop_words(new_stop_words=None):
     # Retrieve stop words and append any additional stop words
-    stop_words = list(ENGLISH_STOP_WORDS)
+    stop_words = list(STOPWORDS)
     if new_stop_words:
         stop_words.extend(new_stop_words)
     return set(stop_words)
@@ -71,109 +73,14 @@ def vectorize(df, column, stop_words):
 
 
 if __name__ == "__main__":
+
+    stopwords = set(STOPWORDS)
+    stopwords.update(["im","nike", "check", "out", "rt", "air", "know", "hey", "httpstcoyyv8xsbp4x", "good", "share", "keep", "new",
+                      "shoe", "im loving", "item", "sneaker", "let", "see", "got", "weight", "jordan"])
+
     plt.rcParams.update({'font.size': 16})
     punc = punctuation
-    # # checked 1
-    # file1 = '../data/2020-06-05-14-11-03_timeline_twitter_pull_nike.json'
-    # file1_df = load_twitter_df_from_file(file1)
-    # print(file1_df.shape)
 
-    # # checked 2
-    # file2 = '../data/2020-06-05-14-11-29_search_twitter_pull_nike.json'
-    # file2_df = load_twitter_df_from_file(file2)
-
-    # # checked 3
-    # file3 = '../data/2020-06-17-09-54-50_timeline_twitter_pull_nike.json'
-    # file3_df = load_twitter_df_from_file(file3)
-
-    # # checked 4
-    # file4 = '../data/2020-06-17-09-55-17_search_twitter_pull_nike.json'
-    # file4_df = load_twitter_df_from_file(file4)
-
-    # # checked 5
-    # file5 = '../data/2020-06-18-10-08-24_timeline_twitter_pull_nike.json'
-    # file5_df = load_twitter_df_from_file(file5)
-
-    # # checked 6
-    # file6 = '../data/2020-06-18-10-08-50_search_twitter_pull_nike.json'
-    # file6_df = load_twitter_df_from_file(file6)
-
-    # # checked 7
-    # file7 = '../data/2020-06-19-16-17-01_timeline_twitter_pull_nike.json'
-    # file7_df = load_twitter_df_from_file(file7)
-
-    # # checked 8
-    # file8 = '../data/2020-06-19-16-17-28_search_twitter_pull_nike.json'
-    # file8_df = load_twitter_df_from_file(file8)
-
-    # # checked 9
-    # file9 = '../data/2020-06-19-22-10-42_search_twitter_pull_nike.json'
-    # file9_df = load_twitter_df_from_file(file9)
-
-    # # checked 10
-    # file10 = '../data/2020-07-09-11-17-25_search_twitter_pull_nike.json'
-    # file10_df = load_twitter_df_from_file(file10)
-
-    # # checked 11
-    # file11 = '../data/2020-07-21-13-27-31_search_twitter_pull_nike.json'
-    # file11_df = load_twitter_df_from_file(file11)
-
-    # # checked 12
-    # file12 = '../data/2020-07-21-13-40-34_search_twitter_pull_nike.json'
-    # file12_df = load_twitter_df_from_file(file12)
-
-    # # checked 13
-    # file13 = '../data/2020-07-21-13-41-39_timeline_twitter_pull_nike.json'
-    # file13_df = load_twitter_df_from_file(file13)
-
-    # # checked 14
-    # file14 = '../data/2020-07-29-12-47-41_search_twitter_pull_nike.json'
-    # file14_df = load_twitter_df_from_file(file14)
-
-    # # checked 15
-    # file15 = '../data/2020-07-29-12-48-10_timeline_twitter_pull_nike.json'
-    # file15_df = load_twitter_df_from_file(file15)
-
-    # # checked 16
-    # file16 = '../data/2020-08-20-11-33-17_search_twitter_pull_nike.json'
-    # file16_df = load_twitter_df_from_file(file16)
-
-    # # checked 17
-    # file17 = '../data/2020-08-20-11-42-20_timeline_twitter_pull_nike.json'
-    # file17_df = load_twitter_df_from_file(file17)
-
-    # # checked 18
-    # file18 = '../data/2020-08-20-11-50-20_timeline_twitter_pull_adidas.json'
-    # file18_df = load_twitter_df_from_file(file18)
-
-    # # checked 19
-    # file19 = '../data/2020-08-20-11-54-52_search_twitter_pull_adidas.json'
-    # file19_df = load_twitter_df_from_file(file19)
-
-    # # checked 20
-    # file20 = '../data/2020-08-20-11-55-23_timeline_twitter_pull_underarmour.json'
-    # file20_df = load_twitter_df_from_file(file20)
-
-    # # checked 21
-    # file21 = '../data/2020-08-20-11-55-53_search_twitter_pull_adidas.json'
-    # file21_df = load_twitter_df_from_file(file21)
-
-    # # checked 22
-    # file22 = '../data/2020-08-20-11-58-18_search_twitter_pull_underarmour.json'
-    # file22_df = load_twitter_df_from_file(file22)
-
-    # # checked 23
-    # file23 = '../data/2020-08-20-12-25-38_search_twitter_pull_underarmour.json'
-    # file23_df = load_twitter_df_from_file(file23)
-
-    # # checked 24
-    # file24 = '../data/2020-08-20-12-43-07_search_twitter_pull_underarmour.json'
-    # file24_df = load_twitter_df_from_file(file24)
-
-
-    # all_df = pd.concat([file1_df, file2_df, file3_df, file4_df, file5_df, file6_df, file7_df, file8_df, 
-    #                     file9_df, file10_df, file11_df, file12_df, file13_df, file14_df, file15_df, file16_df, 
-    #                     file17_df, file18_df, file19_df, file20_df, file21_df, file22_df, file23_df, file24_df])
     directory = "../data/"
     df_list = []
     for filename in os.listdir(directory):
@@ -185,24 +92,31 @@ if __name__ == "__main__":
             continue
 
     all_df = pd.concat(df_list)
+    all_df.drop_duplicates()
     print(all_df.head())
     print(all_df.tail())
     print(all_df.shape)
 
+
+
     clean_column(all_df, 'text')
+    print(all_df.head())
+
+    english_df = all_df["lang"] == "en"
+    print(english_df.head())
+
+    all_df = all_df[english_df]
     print(all_df.head())
 # directory = '../data'
 # # df_namer = "df"
 # counter = 1
 
-
-
 # print(my_dict)
 
 # Commented out
 # TF IDF
-v = TfidfVectorizer()
-x = v.fit_transform(all_df['text'])
+v = TfidfVectorizer() #max_features = 30000
+X = v.fit_transform(all_df['text'])
 
 
 # Load the library with the CountVectorizer method
@@ -234,7 +148,7 @@ def plot_10_most_common_words(count_data, count_vectorizer):
     plt.ylabel('counts')
     plt.show()
 # Initialise the count vectorizer with the English stop words
-count_vectorizer = CountVectorizer(stop_words='english')
+count_vectorizer = CountVectorizer(stop_words=stopwords)
 # Fit and transform the processed titles
 count_data = count_vectorizer.fit_transform(all_df['text'])
 # Visualise the 10 most common words
@@ -252,16 +166,16 @@ def print_topics(model, count_vectorizer, n_top_words):
         print(" ".join([words[i]
                         for i in topic.argsort()[:-n_top_words - 1:-1]]))
         
-# Commented out        
-# Tweak the two parameters below
-number_topics = 5
-number_words = 10
-# Create and fit the LDA model
-lda = LDA(n_components=number_topics, n_jobs=-1)
-lda.fit(count_data)
-# Print the topics found by the LDA model
-print("Topics found via LDA:")
-print_topics(lda, count_vectorizer, number_words)
+# Commented out old model    
+# # Tweak the two parameters below
+# number_topics = 5
+# number_words = 10
+# # Create and fit the LDA model
+# lda = LDA(n_components=number_topics, n_jobs=-1)
+# lda.fit(count_data)
+# # Print the topics found by the LDA model
+# print("Topics found via LDA:")
+# print_topics(lda, count_vectorizer, number_words)
 
 # Topic #0:
 # rt nike shoe know like tried underarmour china time ua
@@ -281,31 +195,69 @@ print_topics(lda, count_vectorizer, number_words)
 text = " ".join(tweet for tweet in all_df.text)
 print ("There are {} words in the combination of all review.".format(len(text)))
 
-stopwords = set(STOPWORDS)
-# stopwords.update(["singletrack","trail","great","ride","climb","descent"])
+
 wordcloud = WordCloud(stopwords=stopwords).generate(text)
 
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
+plt.tight_layout()
 plt.show()
 
-
-# seed_topics = {'coronavirus': 0, 'covid': 0, 'covid-19': 0, 'virus': 0,   
-#                'equality': 1, 'diversity': 1, 'placeholder': 1, 'placeholder': 1, 
-#                'climage': 2, 'environmental': 2, 'placeholder': 2, 'placeholder': 2,
-#                'business': 3, 'finance': 3, 'placeholder': 3, 'placeholder': 3,
-#                'other': 4, 'other': 4, 'other': 4, 'other': 4,
-# model.fit(X, seed_topics=seed_topics, seed_confidence=0.15)
-
-# model = guidedlda.GuidedLDA(n_topics=5, n_iter=100, random_state=7, refresh=20)
-# model.fit(X)
-
-# model = guidedlda.GuidedLDA(n_topics=5, n_iter=100, random_state=7, refresh=20)
-# model.fit(X)
+#  Coronavirus, Equality/Diversity, climate/enviromental,business/finance, and other as a catachall
 
 
-# topic_word = model.topic_word_
-# n_top_words = 8
-# for i, topic_dist in enumerate(topic_word):
-#     topic_words = np.array(vocab)[np.argsort(topic_dist)][:-(n_top_words+1):-1]
-#     print('Topic {}: {}'.format(i, ' '.join(topic_words)))
+
+
+
+
+
+vocab = count_vectorizer.get_feature_names()
+word2id = dict((v, idx) for idx, v in enumerate(vocab))
+print(vocab)
+
+# seed_topics = {'coronavirus': 0, 'covid': 0, 'covid-19': 0, 'virus': 0, 'flattening': 0, 'curve': 0, 'pandemic': 0,  'herd': 0, 'contactless': 0, 'stayhome': 0,
+#                'cdc': 0, 'asymptomatic': 0, 'spread': 0, 'contact': 0, 'tracing': 0, 'hydroxychloroquine': 0, 'quarantine': 0,
+#                'equality': 1, 'diversity': 1, 'lgbt': 1, 'justice': 1, 'blm': 1, 'opportunity': 1, 'equal': 1, 'rights': 1, 'fairness': 1, 'blacklivesmatter': 1,  
+#                'climate': 2, 'environmental': 2, 'greenhouse': 2, 'fossil': 2, 'fuel': 2, 'alternative': 2, 'temperature': 2,
+#                'business': 3, 'finance': 3, 'placeholder_4': 3, 'placeholder_5': 3,
+#                'other1': 4, 'other2': 4, 'other3': 4, 'other4': 4}
+ 
+seed_topic_list = [['coronavirus', 'covid', 'covid-19', 'virus', 'curve', 'flat', 'coronavirusoutbreak', 'corona'],
+                    ['equality', 'diversity', 'china', 'equalitywarrior', 'equally', 'equal', 'diversityandinclusion', 'diverse', 'chinese'],
+                    ['climate', 'environmental', 'climatechange', 'fuel', 'fossil', 'renewable', 'carbon'],
+                    ['business', 'finance','economic', 'investment', 'money', 'bank', 'stocks', 'stockstobuy', 'stockstowatch', 'stockmarkets'],
+                    ['fashion', 'poshmarkapp', 'poshmark', 'style']]
+model = guidedlda.GuidedLDA(n_topics=6, n_iter=100, random_state=7, refresh=20)
+
+
+
+# Topic 0: size ebay men via underarmour yeezy black short
+# Topic 1: time china one slave athlete proactively now people
+# Topic 2: loving poshmarkapp poshmark fashion style shopmycloset arsenal today
+# Topic 3: tried now ua available lightweight make cushioning better
+# Topic 4: size now available adidas amp gift low promotion
+# Topic 5: update style time eye release stay word recommend
+
+
+# Topic 0: size ebay men via yeezy underarmour black adidas
+# Topic 1: time china slave one athlete proactively people brand
+# Topic 2: loving poshmarkapp poshmark fashion style shopmycloset arsenal today
+# Topic 3: tried now ua lightweight cushioning stability shop available
+# Topic 4: now size available amp gift low promotion isnt
+# Topic 5: update style time eye release stay tuned available
+
+seed_topics = {}
+for t_id, st in enumerate(seed_topic_list):
+    for word in st:
+        if word in word2id:
+            seed_topics[word2id[word]] = t_id
+
+# model.fit(count_data, seed_topics=seed_topics, seed_confidence=0.85)
+model.fit(count_data, seed_topics=seed_topics, seed_confidence=0.85)
+
+topic_word = model.topic_word_
+n_top_words = 15
+topics = ['corona', 'equality', 'climate', 'business', 'other', 'other2']
+for i, topic_dist in enumerate(topic_word):
+    topic_words = np.array(vocab)[np.argsort(topic_dist)][:-(n_top_words+1):-1]
+    print('Topic {}: {}'.format(i, ' '.join(topic_words)))
