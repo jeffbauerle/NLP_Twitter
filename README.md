@@ -82,6 +82,23 @@ I was specifically interested in 4 topics, so I decided to look at 7 topics, wit
 
 One theme was widely present in my data, that being Poshmark, so I decided to add it to its own category of Poshmark/Fashion
 
+
+    seed_topic_list = [['coronavirus', 'covid', 'covid-19', 'virus', 'curve',
+                        'flat', 'coronavirusoutbreak', 'corona'],
+                       ['equality', 'diversity', 'china', 'equalitywarrior',
+                        'equally', 'equal', 'diversityandinclusion',
+                        'diverse', 'chinese', 'uyghur', 'forceduyghurlabor',
+                        'forced', 'forcedlabour', 'forcedlabor',
+                        'forcedchildlabor', 'forcedslave'],
+                       ['climate', 'environmental', 'climatechange', 'fuel',
+                        'fossil', 'renewable', 'carbon'],
+                       ['business', 'finance', 'economic',
+                        'investment', 'money',
+                        'bank', 'stocks', 'stockstobuy', 'stockstowatch',
+                        'stockmarkets'],
+                       ['fashion', 'poshmarkapp', 'poshmark', 'style']]
+
+
 ## Findings
 
 
