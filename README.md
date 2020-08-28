@@ -23,6 +23,8 @@ For this project I am looking at the first phase of this goal: NLP topic modelin
 
 ## Description of raw data
 The data was obtained through a Twitter API and saved as 24 separate JSON files.
+The corpus included 71,535 documents.
+
 Many attributes are included in the Twitter API call but I focused on the following:
 1. id_str - to provide a unique identifier for the Tweet
 2. text - to provide the content of the Tweet
