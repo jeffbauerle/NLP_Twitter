@@ -158,12 +158,6 @@ if __name__ == "__main__":
     # Visualise the 10 most common words
     plot_10_most_common_words(count_data, count_vectorizer)
 
-
-    # Load the LDA model from sk-learn
-
-
-
-
     text = " ".join(tweet for tweet in all_df.text)
     print("There are {} words in the combination of all review.".format(len(text)))
 
@@ -182,22 +176,21 @@ if __name__ == "__main__":
     word2id = dict((v, idx) for idx, v in enumerate(vocab))
     # print(vocab)
 
-
     seed_topic_list = [['coronavirus', 'covid', 'covid-19', 'virus', 'curve',
                         'flat', 'coronavirusoutbreak', 'corona'],
-                    ['equality', 'diversity', 'china', 'equalitywarrior',
-                    'equally', 'equal', 'diversityandinclusion',
+                       ['equality', 'diversity', 'china', 'equalitywarrior',
+                        'equally', 'equal', 'diversityandinclusion',
                         'diverse', 'chinese', 'uyghur', 'forceduyghurlabor',
                         'forced', 'forcedlabour', 'forcedlabor',
                         'forcedchildlabor', 'forcedslave'],
-                    ['climate', 'environmental', 'climatechange', 'fuel',
-                    'fossil', 'renewable', 'carbon'],
-                    ['business', 'finance', 'economic', 'investment', 'money',
-                    'bank', 'stocks', 'stockstobuy', 'stockstowatch',
+                       ['climate', 'environmental', 'climatechange', 'fuel',
+                        'fossil', 'renewable', 'carbon'],
+                       ['business', 'finance', 'economic',
+                        'investment', 'money',
+                        'bank', 'stocks', 'stockstobuy', 'stockstowatch',
                         'stockmarkets'],
-                    ['fashion', 'poshmarkapp', 'poshmark', 'style']]
+                       ['fashion', 'poshmarkapp', 'poshmark', 'style']]
     model = guidedlda.GuidedLDA(n_topics=7, n_iter=100, random_state=7, refresh=20)
-
 
     seed_topics = {}
     for t_id, st in enumerate(seed_topic_list):
@@ -210,7 +203,7 @@ if __name__ == "__main__":
     topic_word = model.topic_word_
     n_top_words = 10
     topics = ['coronavirus', 'equality/diversity', 'climate',
-            'business/finance', 'other', 'other2', 'other3']
+              'business/finance', 'other', 'other2', 'other3']
     for i, topic_dist in enumerate(topic_word):
         topic_words = np.array(vocab)[np.argsort(topic_dist)][:-(n_top_words+1):-1]
         print(topics[i])
@@ -219,4 +212,4 @@ if __name__ == "__main__":
     doc_topic = model.transform(count_data)
     for i in range(9):
         print("top topic: {} Document: {}".format(doc_topic[i].argmax(),
-                                                ', '.join(np.array(vocab)[count_data[i, :].toarray().argsort()][0][::-1][0:10])))
+                                                  ', '.join(np.array(vocab)[count_data[i, :].toarray().argsort()][0][::-1][0:10])))
