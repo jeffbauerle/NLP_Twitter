@@ -206,28 +206,18 @@ plt.show()
 #  Coronavirus, Equality/Diversity, climate/enviromental,business/finance, and other as a catachall
 
 
-
-
-
-
-
 vocab = count_vectorizer.get_feature_names()
 word2id = dict((v, idx) for idx, v in enumerate(vocab))
 print(vocab)
 
-# seed_topics = {'coronavirus': 0, 'covid': 0, 'covid-19': 0, 'virus': 0, 'flattening': 0, 'curve': 0, 'pandemic': 0,  'herd': 0, 'contactless': 0, 'stayhome': 0,
-#                'cdc': 0, 'asymptomatic': 0, 'spread': 0, 'contact': 0, 'tracing': 0, 'hydroxychloroquine': 0, 'quarantine': 0,
-#                'equality': 1, 'diversity': 1, 'lgbt': 1, 'justice': 1, 'blm': 1, 'opportunity': 1, 'equal': 1, 'rights': 1, 'fairness': 1, 'blacklivesmatter': 1,  
-#                'climate': 2, 'environmental': 2, 'greenhouse': 2, 'fossil': 2, 'fuel': 2, 'alternative': 2, 'temperature': 2,
-#                'business': 3, 'finance': 3, 'placeholder_4': 3, 'placeholder_5': 3,
-#                'other1': 4, 'other2': 4, 'other3': 4, 'other4': 4}
- 
+
 seed_topic_list = [['coronavirus', 'covid', 'covid-19', 'virus', 'curve', 'flat', 'coronavirusoutbreak', 'corona'],
-                    ['equality', 'diversity', 'china', 'equalitywarrior', 'equally', 'equal', 'diversityandinclusion', 'diverse', 'chinese'],
+                    ['equality', 'diversity', 'china', 'equalitywarrior', 'equally', 'equal', 'diversityandinclusion',
+                     'diverse', 'chinese', 'uyghur', 'forceduyghurlabor', 'forced', 'forcedlabour', 'forcedlabor', 'forcedchildlabor', 'forcedslave'],
                     ['climate', 'environmental', 'climatechange', 'fuel', 'fossil', 'renewable', 'carbon'],
                     ['business', 'finance','economic', 'investment', 'money', 'bank', 'stocks', 'stockstobuy', 'stockstowatch', 'stockmarkets'],
                     ['fashion', 'poshmarkapp', 'poshmark', 'style']]
-model = guidedlda.GuidedLDA(n_topics=6, n_iter=100, random_state=7, refresh=20)
+model = guidedlda.GuidedLDA(n_topics=7, n_iter=100, random_state=7, refresh=20)
 
 
 
@@ -253,11 +243,26 @@ for t_id, st in enumerate(seed_topic_list):
             seed_topics[word2id[word]] = t_id
 
 # model.fit(count_data, seed_topics=seed_topics, seed_confidence=0.85)
-model.fit(count_data, seed_topics=seed_topics, seed_confidence=0.85)
+model.fit(count_data, seed_topics=seed_topics, seed_confidence=0.95)
 
 topic_word = model.topic_word_
-n_top_words = 15
-topics = ['corona', 'equality', 'climate', 'business', 'other', 'other2']
+n_top_words = 20
+topics = ['coronavirus', 'equality/diversity', 'climate', 'business/finance', 'other', 'other2', 'other3']
 for i, topic_dist in enumerate(topic_word):
     topic_words = np.array(vocab)[np.argsort(topic_dist)][:-(n_top_words+1):-1]
+    print(topics[i])
     print('Topic {}: {}'.format(i, ' '.join(topic_words)))
+
+
+
+doc_topic = model.transform(count_data)
+for i in range(9):
+    print("top topic: {} Document: {}".format(doc_topic[i].argmax(),
+                                            #   ', '.join(np.array(vocab)[list(reversed(np.argsort(count_data[i,:])))[0:7]])))
+                                            ', '.join(np.array(vocab)[count_data[i,:].toarray().argsort()][0][::-1][0:10])))
+
+
+# doc_topic = model.transform(X)
+# for i in range(9):
+#     print("top topic: {} Document: {}".format(doc_topic[i].argmax(),
+#                                               ', '.join(np.array(vocab)[list(reversed(X[i,:].argsort()))[0:5]])))
