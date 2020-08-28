@@ -114,12 +114,12 @@ One theme was widely present in my data, that being Poshmark, so I decided to ad
 
 | GuidedLDA Part  | Calculation  | Value |
 |---|---|---|
-| <0>  | log likelihood:  | -5228371  |
-| <20> | log likelihood: | -3328349 |
-| <40> | log likelihood: | -3278971 |
-| <60> | log likelihood: | -3250502 |
-| <80> | log likelihood: | -3233560 |
-| <99> | log likelihood: | -3219670 |
+| <0>  | log likelihood:  | -5.2E6  |
+| <20> | log likelihood: | -3.3E6 |
+| <40> | log likelihood: | -3.3E6 |
+| <60> | log likelihood: | -3.3E6 |
+| <80> | log likelihood: | -3.2E6 |
+| <99> | log likelihood: | -3.2E6 |
 
 <br>
 
