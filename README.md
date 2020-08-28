@@ -3,13 +3,19 @@
 
 
 ## Description of raw data
+The data was obtained through a Twitter API and saved as 24 separate JSON files.
 
 ## Exploratory Data Analysis (EDA)
 
-
+<figure>
 <img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/common_words.png">
+<figcaption>Based on all words in the corpus</figcaption>
+</figure>
 
+<figure>
 <img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/wordcloud.png">
+<figcaption>Wordcloud after stopwords have been removed</figcaption>
+</figure>
 
 ## NLP Pipeline 
 <br>
@@ -56,6 +62,8 @@ The goal with Guided LDA is to be able to separate out topics which have smaller
 |  n_topics | 7 |  
 |  n_iter | 100 | 
 
+<br>
+
 | GuidedLDA Part  | Calculation  | Value |
 |---|---|---|
 | <0>  | log likelihood:  | -5228371  |
@@ -65,33 +73,29 @@ The goal with Guided LDA is to be able to separate out topics which have smaller
 | <80> | log likelihood: | -3233560 |
 | <99> | log likelihood: | -3219670 |
 
+<br>
 
-coronavirus
-Topic 0: time size wearing max men available via now people clothes
-equality/diversity
-Topic 1: one china slavery gordongchang underarmour scale regime industrial institutionalizing primary
-climate
-Topic 2: athlete proactively brand size endorse will seek go via arsenal
-business/finance
-Topic 3: time stay tuned available update recommend collection will now style
-other
-Topic 4: loving poshmarkapp fashion poshmark style shopmycloset coach released code leave
-other2
-Topic 5: tried now lightweight cushioning ua stability available look shop better
-other3
-Topic 6: update time style locked stay available release word tuned eye
+| Topic  | Seeded Category  | Top Words |
+|---|---|---|
+| Topic 0:  | Coronavirus  | time size wearing max men available via now people clothes  |
+| Topic 1: | Equality/Diversity | one china slavery gordongchang underarmour scale regime industrial institutionalizing primary |
+| Topic 2:| Climate | athlete proactively brand size endorse will seek go via arsenal |
+| Topic 3: | Business/Finance | time stay tuned available update recommend collection will now style |
+| Topic 4: | Poshmark/Fashion | loving poshmarkapp fashion poshmark style shopmycloset coach released code leave |
+| Topic 5: | None | tried now lightweight cushioning ua stability available look shop better |
+| Topic 6: | None | update time style locked stay available release word tuned eye |
 
+<br>
 
-top topic: 0 Document: signed, rare, added, spike, lee, available, michael, 8x10, buy, now
-top topic: 6 Document: drip, hubby, swoosh, client, kallyyysseetheeducator, amp, bk, doper, mrmenace387, gift
-top topic: 0 Document: dcexaminer, nflcommish, kaepernick7, marching, order, nfl, well, megynkelly, espn, tedcruz
-top topic: 2 Document: juneteenth2020, federal, holiday, sign, make, appoints, petition, fettidbiasi, fevertree, fever
-top topic: 0 Document: red, yeezy, airyeezy, action, 2009, 115, october, men, max, 486978600
-top topic: 2 Document: family, hocky, friend, mlb, along, ricktruelove, carlosbalonso2, spireswillie, go, soccer
-top topic: 2 Document: wtags, authentic, 192852, xl, via, men, tee, size, shirt, style
-top topic: 6 Document: graphicdesign, nikestore, design, dribbble, helvetiphant, concept, runner, nikerunning, idea, femalerapper
-top topic: 5 Document: hold, store, retail, robbarroninvest, reopening, retailer, fashion, portfolio, ahead, 15th
+| Document  | Top Topic  | Top Words |
+|---|---|---|
+| 1  | 0 | signed, rare, added, spike, lee, available, michael, 8x10, buy, now  |
+| 2 | 6 | drip, hubby, swoosh, client, kallyyysseetheeducator, amp, bk, doper, mrmenace387, gift |
+| 3 | 0 | dcexaminer, nflcommish, kaepernick7, marching, order, nfl, well, megynkelly, espn, tedcruz |
+| 4 | 2 | juneteenth2020, federal, holiday, sign, make, appoints, petition, fettidbiasi, fevertree, fever |
+| 5 | 0 | red, yeezy, airyeezy, action, 2009, 115, october, men, max, 486978600 |
 
+<br>
 Typically with LDA we want to compute the Model Perplexity and Coherence Score to interpret the model. One of the limitations of the GuidedLDA library used is that there is no such method implemented at this time.
 
 
@@ -107,15 +111,11 @@ Typically with LDA we want to compute the Model Perplexity and Coherence Score t
 <br>
 * Visualize the topics-keywords using pyLDAvis library
 <br>
-* Add test scripts
-<br>
-* Add classes
-<br>
-* Breakout scripts
-<br>
 * Incorporate model persistence through pickling
 <br>
 * Retweet consideration
+<br>
+* Auto-build seed list based on words associated with topic of interest
 
 
 
