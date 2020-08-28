@@ -94,7 +94,18 @@ def plot_10_most_common_words(count_data, count_vectorizer):
     plt.xticks(x_pos, words, rotation=90)
     plt.xlabel('words')
     plt.ylabel('counts')
-    plt.show()
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig("../images/common_words.png")
+    # plt.show()
+
+
+    def print_topics(model, count_vectorizer, n_top_words):
+        words = count_vectorizer.get_feature_names()
+        for topic_idx, topic in enumerate(model.components_):
+            print("\nTopic #%d:" % topic_idx)
+            print(" ".join([words[i]
+                            for i in topic.argsort()[:-n_top_words - 1:-1]]))
 
 
 if __name__ == "__main__":
@@ -102,8 +113,8 @@ if __name__ == "__main__":
     stopwords = set(STOPWORDS)
     stopwords.update(["im", "nike", "check", "out", "rt", "air", "know", "hey",
                      "httpstcoyyv8xsbp4x", "good", "share", "keep", "new",
-                      "shoe", "im loving", "item", "sneaker", "let", "see",
-                      "got", "weight", "jordan"])
+                      "shoe", "im  loving", "item", "sneaker", "let", "see",
+                      "got", "weight", "jordan", "loving  on", "on"])
 
     plt.rcParams.update({'font.size': 16})
     punc = punctuation
@@ -158,31 +169,26 @@ if __name__ == "__main__":
 
     # Load the LDA model from sk-learn
 
-    # Helper function
-    def print_topics(model, count_vectorizer, n_top_words):
-        words = count_vectorizer.get_feature_names()
-        for topic_idx, topic in enumerate(model.components_):
-            print("\nTopic #%d:" % topic_idx)
-            print(" ".join([words[i]
-                            for i in topic.argsort()[:-n_top_words - 1:-1]]))
+
 
 
     text = " ".join(tweet for tweet in all_df.text)
     print("There are {} words in the combination of all review.".format(len(text)))
 
     wordcloud = WordCloud(stopwords=stopwords).generate(text)
-
+    fig, ax = plt.subplots()
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
     plt.tight_layout()
-    plt.show()
+    plt.savefig("../images/wordcloud.png")
+    # plt.show()
 
     #  Coronavirus, Equality/Diversity, climate/enviromental,
     # business/finance, and other as a catachall
 
     vocab = count_vectorizer.get_feature_names()
     word2id = dict((v, idx) for idx, v in enumerate(vocab))
-    print(vocab)
+    # print(vocab)
 
 
     seed_topic_list = [['coronavirus', 'covid', 'covid-19', 'virus', 'curve',
@@ -210,7 +216,7 @@ if __name__ == "__main__":
     model.fit(count_data, seed_topics=seed_topics, seed_confidence=0.95)
 
     topic_word = model.topic_word_
-    n_top_words = 20
+    n_top_words = 10
     topics = ['coronavirus', 'equality/diversity', 'climate',
             'business/finance', 'other', 'other2', 'other3']
     for i, topic_dist in enumerate(topic_word):
