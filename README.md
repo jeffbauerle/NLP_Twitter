@@ -8,12 +8,12 @@ The data was obtained through a Twitter API and saved as 24 separate JSON files.
 ## Exploratory Data Analysis (EDA)
 
 <figure>
-<img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/common_words.png">
+<img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/common_words.png?token=AH6VOJUWDRKZH3CYVYI2ARK7JEMO2">
 <figcaption>Based on all words in the corpus</figcaption>
 </figure>
 
 <figure>
-<img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/wordcloud.png">
+<img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/wordcloud.png?token=AH6VOJX5GNOBJLSSEZK4E2K7JEMRW">
 <figcaption>Wordcloud after stopwords have been removed</figcaption>
 </figure>
 
