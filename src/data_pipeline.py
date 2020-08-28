@@ -22,6 +22,8 @@ import gensim
 from gensim import corpora
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 import guidedlda
+import seaborn as sns
+from sklearn.decomposition import LatentDirichletAllocation as LDA
 
 
 def load_twitter_df_from_file(filename):
@@ -33,17 +35,21 @@ def load_twitter_df_from_file(filename):
     data_df = pd.DataFrame(data, columns=['id_str', 'text', 'lang'])
     return data_df
 
+
 def remove_punctuation(string, punctuation):
     # remove given punctuation marks from a string
     for character in punctuation:
-        string = string.replace(character,'')
+        string = string.replace(character, '')
     return string
+
 
 def lemmatize_str(string):
     # Lemmatize a string and return it in its original format
     w_tokenizer = nltk.tokenize.WhitespaceTokenizer()
     lemmatizer = nltk.stem.WordNetLemmatizer()
-    return " ".join([lemmatizer.lemmatize(w) for w in w_tokenizer.tokenize(string) if "http" not in w])
+    return " ".join([lemmatizer.lemmatize(w)
+                    for w in w_tokenizer.tokenize(string)
+                    if "http" not in w])
 
 
 def clean_column(df, column):
@@ -51,7 +57,8 @@ def clean_column(df, column):
     df[column] = df[column].apply(lambda x: str(x).lower())
     df[column] = df[column].apply(lambda x: remove_punctuation(x, punctuation))
     df[column] = df[column].apply(lambda x: lemmatize_str(x))
-    return 
+    return
+
 
 def get_stop_words(new_stop_words=None):
     # Retrieve stop words and append any additional stop words
@@ -60,21 +67,23 @@ def get_stop_words(new_stop_words=None):
         stop_words.extend(new_stop_words)
     return set(stop_words)
 
+
 def vectorize(df, column, stop_words):
     # Vectorize a text column of a pandas DataFrame
     text = df[column].values
-    vectorizer = TfidfVectorizer(stop_words = stop_words) 
+    vectorizer = TfidfVectorizer(stop_words=stop_words)
     X = vectorizer.fit_transform(text)
     features = np.array(vectorizer.get_feature_names())
-    return X, features 
-
+    return X, features
 
 
 if __name__ == "__main__":
 
     stopwords = set(STOPWORDS)
-    stopwords.update(["im","nike", "check", "out", "rt", "air", "know", "hey", "httpstcoyyv8xsbp4x", "good", "share", "keep", "new",
-                      "shoe", "im loving", "item", "sneaker", "let", "see", "got", "weight", "jordan"])
+    stopwords.update(["im", "nike", "check", "out", "rt", "air", "know", "hey",
+                     "httpstcoyyv8xsbp4x", "good", "share", "keep", "new",
+                      "shoe", "im loving", "item", "sneaker", "let", "see",
+                      "got", "weight", "jordan"])
 
     plt.rcParams.update({'font.size': 16})
     punc = punctuation
@@ -95,8 +104,6 @@ if __name__ == "__main__":
     print(all_df.tail())
     print(all_df.shape)
 
-
-
     clean_column(all_df, 'text')
     print(all_df.head())
 
@@ -113,35 +120,32 @@ if __name__ == "__main__":
 
 # Commented out
 # TF IDF
-v = TfidfVectorizer() #max_features = 30000
+v = TfidfVectorizer()  # max_features = 30000
 X = v.fit_transform(all_df['text'])
 
 
 # Load the library with the CountVectorizer method
-from sklearn.feature_extraction.text import CountVectorizer
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
+
 sns.set_style('whitegrid')
 # Helper function
+
+
 def plot_10_most_common_words(count_data, count_vectorizer):
     import matplotlib.pyplot as plt
     words = count_vectorizer.get_feature_names()
     total_counts = np.zeros(len(words))
     for t in count_data:
-        total_counts+=t.toarray()[0]
-    
+        total_counts += t.toarray()[0]
     count_dict = (zip(words, total_counts))
-    count_dict = sorted(count_dict, key=lambda x:x[1], reverse=True)[0:10]
+    count_dict = sorted(count_dict, key=lambda x: x[1], reverse=True)[0:10]
     words = [w[0] for w in count_dict]
     counts = [w[1] for w in count_dict]
-    x_pos = np.arange(len(words)) 
-    
+    x_pos = np.arange(len(words))
     plt.figure(2, figsize=(15, 15/1.6180))
     plt.subplot(title='10 most common words')
     sns.set_context("notebook", font_scale=1.25, rc={"lines.linewidth": 2.5})
     sns.barplot(x_pos, counts, palette='husl')
-    plt.xticks(x_pos, words, rotation=90) 
+    plt.xticks(x_pos, words, rotation=90)
     plt.xlabel('words')
     plt.ylabel('counts')
     plt.show()
@@ -154,8 +158,7 @@ plot_10_most_common_words(count_data, count_vectorizer)
 
 
 # Load the LDA model from sk-learn
-from sklearn.decomposition import LatentDirichletAllocation as LDA
- 
+
 # Helper function
 def print_topics(model, count_vectorizer, n_top_words):
     words = count_vectorizer.get_feature_names()
@@ -163,8 +166,8 @@ def print_topics(model, count_vectorizer, n_top_words):
         print("\nTopic #%d:" % topic_idx)
         print(" ".join([words[i]
                         for i in topic.argsort()[:-n_top_words - 1:-1]]))
-        
-# Commented out old model    
+
+# Commented out old model
 # # Tweak the two parameters below
 # number_topics = 5
 # number_words = 10
@@ -175,10 +178,8 @@ def print_topics(model, count_vectorizer, n_top_words):
 # print("Topics found via LDA:")
 # print_topics(lda, count_vectorizer, number_words)
 
-
-
 text = " ".join(tweet for tweet in all_df.text)
-print ("There are {} words in the combination of all review.".format(len(text)))
+print("There are {} words in the combination of all review.".format(len(text)))
 
 
 wordcloud = WordCloud(stopwords=stopwords).generate(text)
@@ -188,7 +189,8 @@ plt.axis("off")
 plt.tight_layout()
 plt.show()
 
-#  Coronavirus, Equality/Diversity, climate/enviromental,business/finance, and other as a catachall
+#  Coronavirus, Equality/Diversity, climate/enviromental,
+# business/finance, and other as a catachall
 
 
 vocab = count_vectorizer.get_feature_names()
@@ -196,12 +198,19 @@ word2id = dict((v, idx) for idx, v in enumerate(vocab))
 print(vocab)
 
 
-seed_topic_list = [['coronavirus', 'covid', 'covid-19', 'virus', 'curve', 'flat', 'coronavirusoutbreak', 'corona'],
-                    ['equality', 'diversity', 'china', 'equalitywarrior', 'equally', 'equal', 'diversityandinclusion',
-                     'diverse', 'chinese', 'uyghur', 'forceduyghurlabor', 'forced', 'forcedlabour', 'forcedlabor', 'forcedchildlabor', 'forcedslave'],
-                    ['climate', 'environmental', 'climatechange', 'fuel', 'fossil', 'renewable', 'carbon'],
-                    ['business', 'finance','economic', 'investment', 'money', 'bank', 'stocks', 'stockstobuy', 'stockstowatch', 'stockmarkets'],
-                    ['fashion', 'poshmarkapp', 'poshmark', 'style']]
+seed_topic_list = [['coronavirus', 'covid', 'covid-19', 'virus', 'curve',
+                    'flat', 'coronavirusoutbreak', 'corona'],
+                   ['equality', 'diversity', 'china', 'equalitywarrior',
+                   'equally', 'equal', 'diversityandinclusion',
+                    'diverse', 'chinese', 'uyghur', 'forceduyghurlabor',
+                    'forced', 'forcedlabour', 'forcedlabor',
+                    'forcedchildlabor', 'forcedslave'],
+                   ['climate', 'environmental', 'climatechange', 'fuel',
+                   'fossil', 'renewable', 'carbon'],
+                   ['business', 'finance', 'economic', 'investment', 'money',
+                   'bank', 'stocks', 'stockstobuy', 'stockstowatch',
+                    'stockmarkets'],
+                   ['fashion', 'poshmarkapp', 'poshmark', 'style']]
 model = guidedlda.GuidedLDA(n_topics=7, n_iter=100, random_state=7, refresh=20)
 
 
@@ -215,16 +224,14 @@ model.fit(count_data, seed_topics=seed_topics, seed_confidence=0.95)
 
 topic_word = model.topic_word_
 n_top_words = 20
-topics = ['coronavirus', 'equality/diversity', 'climate', 'business/finance', 'other', 'other2', 'other3']
+topics = ['coronavirus', 'equality/diversity', 'climate',
+          'business/finance', 'other', 'other2', 'other3']
 for i, topic_dist in enumerate(topic_word):
     topic_words = np.array(vocab)[np.argsort(topic_dist)][:-(n_top_words+1):-1]
     print(topics[i])
     print('Topic {}: {}'.format(i, ' '.join(topic_words)))
 
-
-
 doc_topic = model.transform(count_data)
 for i in range(9):
     print("top topic: {} Document: {}".format(doc_topic[i].argmax(),
-                                            ', '.join(np.array(vocab)[count_data[i,:].toarray().argsort()][0][::-1][0:10])))
-
+                                              ', '.join(np.array(vocab)[count_data[i, :].toarray().argsort()][0][::-1][0:10])))
