@@ -5,14 +5,26 @@ Often times people or companies will proclaim certain values but based on their 
 
 For example:
 
-<iframe src="https://giphy.com/embed/7PfwoiCwBp6Ra" width="480" height="384" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/ellen-degeneres-questions-ask-7PfwoiCwBp6Ra">via GIPHY</a></p>
+Okay Ellen DeGeneres: 
 
-Therefore my goal is to identify topics based on categories of interest, see how people/entities relate to those categories, and then consider the societal perception of those qualities.
+![alt text](https://media.giphy.com/media/7PfwoiCwBp6Ra/giphy.gif)
+
+Are you a kind person?
+
+![alt text](https://media.giphy.com/media/bbwdUGbNSNTlTiccWD/giphy.gif)
+
+Her show and persona is predicated on being a kind and good peson. However recent accusations of how she treats her staff has questioned that image.
+
+My overarching goal is to identify topics based on categories of interest, see how people/entities relate to those categories, and then consider the societal perception of those qualities.
 
 For this project I am looking at the first phase of this goal: NLP topic modeling
 
 ## Description of raw data
 The data was obtained through a Twitter API and saved as 24 separate JSON files.
+Many attributes are included in the Twitter API call but I focused on the following:
+1. id_str - to give me a unique identifier for the Tweet
+2. text - to provide the content of the Tweet
+3. lang - to 
 
 ## Exploratory Data Analysis (EDA)
 
@@ -53,6 +65,7 @@ LDA yields two matrices, denoted θ (theta) and φ (phi): where θ (theta) repre
 LDA is suited for Twitter data because it is a way of soft-clustering the data, which is important since tweets can be very short.
 
 Note: unlike NMF, LDA takes a Bag of Words (term frequency) matrix as input rather than a TF-IDF.
+<br>
 
 ### Guided LDA [Semi-Supervised Learning]
 <br>
