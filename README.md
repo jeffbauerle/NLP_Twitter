@@ -77,13 +77,13 @@ The goal with Guided LDA is to be able to separate out topics which have smaller
 
 | Topic  | Seeded Category  | Top Words |
 |---|---|---|
-| Topic 0:  | Coronavirus  | time size wearing max men available via now people clothes  |
-| Topic 1: | Equality/Diversity | one china slavery gordongchang underarmour scale regime industrial institutionalizing primary |
-| Topic 2:| Climate | athlete proactively brand size endorse will seek go via arsenal |
-| Topic 3: | Business/Finance | time stay tuned available update recommend collection will now style |
-| Topic 4: | Poshmark/Fashion | loving poshmarkapp fashion poshmark style shopmycloset coach released code leave |
-| Topic 5: | None | tried now lightweight cushioning ua stability available look shop better |
-| Topic 6: | None | update time style locked stay available release word tuned eye |
+| 0 | Coronavirus  | time size wearing max men available via now people clothes  |
+| 1 | Equality/Diversity | one china slavery gordongchang underarmour scale regime industrial institutionalizing primary |
+| 2 | Climate | athlete proactively brand size endorse will seek go via arsenal |
+| 3 | Business/Finance | time stay tuned available update recommend collection will now style |
+| 4 | Poshmark/Fashion | loving poshmarkapp fashion poshmark style shopmycloset coach released code leave |
+| 5 | None | tried now lightweight cushioning ua stability available look shop better |
+| 6 | None | update time style locked stay available release word tuned eye |
 
 <br>
 
@@ -107,6 +107,7 @@ Typically with LDA we want to compute the Model Perplexity and Coherence Score t
 * Try an NMF model and plot the Silhouette scores
 <br>
 * Perform sentiment analysis using VADER
+<br>
 * Emoji consideration for both sentiment analysis and potential application to diversity category.
 <br>
 * Visualize the topics-keywords using pyLDAvis library
