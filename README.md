@@ -33,17 +33,13 @@ Attributes that also may be useful to consider:
 
 ## Exploratory Data Analysis (EDA)
 
-<figure>
-<img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/common_words.png?token=AH6VOJW2ENQAM2O4JAOSI527JESPG">
-<figcaption>Based on all words in the corpus</figcaption>
-</figure>
-
 ![alt text](images/common_words.png)
+Common words after pre-processing and removal of stop words
 
-<figure>
-<img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/wordcloud.png?token=AH6VOJRXCCTHFVN64FHGFHC7JEST4">
-<figcaption>Wordcloud after stopwords have been removed</figcaption>
-</figure>
+![alt text](images/wordcloud.png)
+<br>
+Same as above, represented in a wordcloud
+
 
 ## NLP Pipeline 
 <br>
