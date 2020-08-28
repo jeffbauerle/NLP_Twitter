@@ -1,4 +1,3 @@
-
 import json
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -18,7 +17,6 @@ from pathlib import Path
 from string import punctuation
 from bs4 import BeautifulSoup
 import nltk
-# from sklearn.feature_extraction.stop_words import ENGLISH_STOP_WORDS
 from sklearn.feature_extraction.text import TfidfVectorizer
 import gensim
 from gensim import corpora
@@ -177,20 +175,7 @@ def print_topics(model, count_vectorizer, n_top_words):
 # print("Topics found via LDA:")
 # print_topics(lda, count_vectorizer, number_words)
 
-# Topic #0:
-# rt nike shoe know like tried underarmour china time ua
 
-# Topic #1:
-# nike rt cd adidas let look dvd stussy celeas1 メルカリ
-
-# Topic #2:
-# hey time check available nike style update recommend thanks new
-
-# Topic #3:
-# adidasbrasil rt good check im item fashion loving share poshmarkapp
-
-# Topic #4:
-# nike rt air jordan sneaker size new ナイキ max men
 
 text = " ".join(tweet for tweet in all_df.text)
 print ("There are {} words in the combination of all review.".format(len(text)))
@@ -220,29 +205,12 @@ seed_topic_list = [['coronavirus', 'covid', 'covid-19', 'virus', 'curve', 'flat'
 model = guidedlda.GuidedLDA(n_topics=7, n_iter=100, random_state=7, refresh=20)
 
 
-
-# Topic 0: size ebay men via underarmour yeezy black short
-# Topic 1: time china one slave athlete proactively now people
-# Topic 2: loving poshmarkapp poshmark fashion style shopmycloset arsenal today
-# Topic 3: tried now ua available lightweight make cushioning better
-# Topic 4: size now available adidas amp gift low promotion
-# Topic 5: update style time eye release stay word recommend
-
-
-# Topic 0: size ebay men via yeezy underarmour black adidas
-# Topic 1: time china slave one athlete proactively people brand
-# Topic 2: loving poshmarkapp poshmark fashion style shopmycloset arsenal today
-# Topic 3: tried now ua lightweight cushioning stability shop available
-# Topic 4: now size available amp gift low promotion isnt
-# Topic 5: update style time eye release stay tuned available
-
 seed_topics = {}
 for t_id, st in enumerate(seed_topic_list):
     for word in st:
         if word in word2id:
             seed_topics[word2id[word]] = t_id
 
-# model.fit(count_data, seed_topics=seed_topics, seed_confidence=0.85)
 model.fit(count_data, seed_topics=seed_topics, seed_confidence=0.95)
 
 topic_word = model.topic_word_
@@ -258,11 +226,5 @@ for i, topic_dist in enumerate(topic_word):
 doc_topic = model.transform(count_data)
 for i in range(9):
     print("top topic: {} Document: {}".format(doc_topic[i].argmax(),
-                                            #   ', '.join(np.array(vocab)[list(reversed(np.argsort(count_data[i,:])))[0:7]])))
                                             ', '.join(np.array(vocab)[count_data[i,:].toarray().argsort()][0][::-1][0:10])))
 
-
-# doc_topic = model.transform(X)
-# for i in range(9):
-#     print("top topic: {} Document: {}".format(doc_topic[i].argmax(),
-#                                               ', '.join(np.array(vocab)[list(reversed(X[i,:].argsort()))[0:5]])))
