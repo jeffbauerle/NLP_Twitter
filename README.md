@@ -1,5 +1,7 @@
 # Twitter Data Topic Modeling
 
+![alt text](https://www.interactions.com/wp-content/uploads/2018/10/nlp_and_cc_2000x500.jpg)
+
 ## Introduction
 Often times people or companies will proclaim certain values, but based on their actions society may perceive them differently.
 
@@ -22,7 +24,7 @@ For this project I am looking at the first phase of this goal: NLP topic modelin
 ## Description of raw data
 The data was obtained through a Twitter API and saved as 24 separate JSON files.
 Many attributes are included in the Twitter API call but I focused on the following:
-1. id_str - to give me a unique identifier for the Tweet
+1. id_str - to provide a unique identifier for the Tweet
 2. text - to provide the content of the Tweet
 3. lang - to filter to just Tweets in English, as about 75% of the data is in language other than English
 
@@ -74,7 +76,9 @@ Note: unlike NMF, LDA takes a Bag of Words (term frequency) matrix as input rath
 <br>
 The goal with Guided LDA is to be able to separate out topics which have smaller representation in the corpus and guide the classification of documents by using seed words for topics in an attempt to guide the model to converge around those terms.
 
+I was specifically interested in 4 topics, so I decided to look at 7 topics, with the thought being to add some extra topics to allow the majority class of tweets nonrelated to the categories of interest to be spread onto the unseeded topics and attach less to my catogories of interest.
 
+One theme was widely present in my data, that being Poshmark, so I decided to add it to its own category of Poshmark/Fashion
 
 ## Findings
 
