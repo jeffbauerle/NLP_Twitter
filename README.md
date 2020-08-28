@@ -7,6 +7,10 @@
 ## Exploratory Data Analysis (EDA)
 
 
+<img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/common_words.png">
+
+<img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/wordcloud.png">
+
 ## Model
 ### Base Model - Latent Dirichlet allocation (LDA) - [Unsupervised] 
 LDA is a "generative probabilistic model" of a collection of composites made up of parts. 
