@@ -1,7 +1,7 @@
 # Twitter Data Topic Modeling
 
 ## Introduction
-Often times people or companies will proclaim certain values but based on their actions society may perceive them differently.
+Often times people or companies will proclaim certain values, but based on their actions society may perceive them differently.
 
 For example:
 
@@ -25,6 +25,11 @@ Many attributes are included in the Twitter API call but I focused on the follow
 1. id_str - to give me a unique identifier for the Tweet
 2. text - to provide the content of the Tweet
 3. lang - to filter to just Tweets in English, as about 75% of the data is in language other than English
+
+Attributes that also may be useful to consider:
+1. user_mentions
+2. in_repy_to
+3. description
 
 ## Exploratory Data Analysis (EDA)
 
@@ -109,13 +114,13 @@ The goal with Guided LDA is to be able to separate out topics which have smaller
 
 <br>
 
-| Document  | Top Topic  | Top Words |
-|---|---|---|
-| 1  | 0 (Coronavirus) | signed, rare, added, spike, lee, available, michael, 8x10, buy, now  |
-| 2 | 6 (None) | drip, hubby, swoosh, client, kallyyysseetheeducator, amp, bk, doper, mrmenace387, gift |
-| 3 | 0 (Coronavirus) | dcexaminer, nflcommish, kaepernick7, marching, order, nfl, well, megynkelly, espn, tedcruz |
-| 4 | 2 (Climate) | juneteenth2020, federal, holiday, sign, make, appoints, petition, fettidbiasi, fevertree, fever |
-| 5 | 0 (Coronavirus) | red, yeezy, airyeezy, action, 2009, 115, october, men, max, 486978600 |
+| Document  | Top Topic  | Top Words | Original
+|---|---|---|---|
+| 1  | 0 (Coronavirus) | signed, rare, added, spike, lee, available, michael, 8x10, buy, now  | We\u2019ve Added Some Rare SPIKE LEE signed \u201cMICHAEL JORDAN\u201d 8X10 Photos that are Now Available. Buy Them Here:\u2026 https://t.co/CnZmSeGc6p |
+| 2 | 6 (None) | drip, hubby, swoosh, client, kallyyysseetheeducator, amp, bk, doper, mrmenace387, gift | original |
+| 3 | 0 (Coronavirus) | dcexaminer, nflcommish, kaepernick7, marching, order, nfl, well, megynkelly, espn, tedcruz | original |
+| 4 | 2 (Climate) | juneteenth2020, federal, holiday, sign, make, appoints, petition, fettidbiasi, fevertree, fever | original |
+| 5 | 0 (Coronavirus) | red, yeezy, airyeezy, action, 2009, 115, october, men, max, 486978600 | original |
 
 <br>
 Typically with LDA we want to compute the Model Perplexity and Coherence Score to interpret the model. One of the limitations of the GuidedLDA library used is that there is no such method implemented at this time.
