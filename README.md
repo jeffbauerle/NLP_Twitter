@@ -38,6 +38,8 @@ Attributes that also may be useful to consider:
 <figcaption>Based on all words in the corpus</figcaption>
 </figure>
 
+![alt text](images/common_words.png)
+
 <figure>
 <img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/wordcloud.png?token=AH6VOJRXCCTHFVN64FHGFHC7JEST4">
 <figcaption>Wordcloud after stopwords have been removed</figcaption>
@@ -117,10 +119,10 @@ The goal with Guided LDA is to be able to separate out topics which have smaller
 | Document  | Top Topic  | Top Words | Original
 |---|---|---|---|
 | 1  | 0 (Coronavirus) | signed, rare, added, spike, lee, available, michael, 8x10, buy, now  | We\u2019ve Added Some Rare SPIKE LEE signed \u201cMICHAEL JORDAN\u201d 8X10 Photos that are Now Available. Buy Them Here:\u2026 https://t.co/CnZmSeGc6p |
-| 2 | 6 (None) | drip, hubby, swoosh, client, kallyyysseetheeducator, amp, bk, doper, mrmenace387, gift | original |
-| 3 | 0 (Coronavirus) | dcexaminer, nflcommish, kaepernick7, marching, order, nfl, well, megynkelly, espn, tedcruz | original |
-| 4 | 2 (Climate) | juneteenth2020, federal, holiday, sign, make, appoints, petition, fettidbiasi, fevertree, fever | original |
-| 5 | 0 (Coronavirus) | red, yeezy, airyeezy, action, 2009, 115, october, men, max, 486978600 | original |
+| 2 | 6 (None) | drip, hubby, swoosh, client, kallyyysseetheeducator, amp, bk, doper, mrmenace387, gift | My clients are doper than yours!\ud83d\ude09 mrmenace387 #bloody #AF1 &amp; kallyyysseetheeducator #drip #swoosh gift for hubby bk\u2026 https://t.co/PVywaVd6GZ |
+| 3 | 0 (Coronavirus) | dcexaminer, nflcommish, kaepernick7, marching, order, nfl, well, megynkelly, espn, tedcruz | @dcexaminer @tedcruz @megynkelly @Kaepernick7 @nflcommish well the #NFL gets its marching orders from #Nike, #ESPN,\u2026 https://t.co/HH8Sfu1ldk |
+| 4 | 2 (Climate) | juneteenth2020, federal, holiday, sign, make, appoints, petition, fettidbiasi, fevertree, fever | #Nike appoints  #JUNETEENTH2020 a holiday!\nSign the petition to make it federal https://t.co/h6HTuqPcDk https://t.co/iA77nAWfyQ |
+| 5 | 0 (Coronavirus) | red, yeezy, airyeezy, action, 2009, 115, october, men, max, 486978600 | #Nike Air Max 2009 Action Red Silver White Mens 11.5 486978-600 Red October #Yeezy https://t.co/taZyzLWkzd #AirYeezy https://t.co/v9HNEcyb0Y |
 
 <br>
 Typically with LDA we want to compute the Model Perplexity and Coherence Score to interpret the model. One of the limitations of the GuidedLDA library used is that there is no such method implemented at this time.
@@ -129,6 +131,8 @@ Typically with LDA we want to compute the Model Perplexity and Coherence Score t
 ## Future Work
 <br>
 * Perform Part of Speech (POS) tagging
+<br>
+* Identify top documents in each topic
 <br>
 * Evaluate amount of variance explained by the topics
 <br>
