@@ -99,9 +99,6 @@ One theme was widely present in my data, that being Poshmark, so I decided to ad
                        ['fashion', 'poshmarkapp', 'poshmark', 'style']]
 
 
-## Findings
-
-
 | GuidedLDA Parameters  | Value   | 
 |---|---|
 | n_documents  | 51055  |  
@@ -109,6 +106,8 @@ One theme was widely present in my data, that being Poshmark, so I decided to ad
 |  n_words | 410607  |  
 |  n_topics | 7 |  
 |  n_iter | 100 | 
+
+## Findings
 
 <br>
 
