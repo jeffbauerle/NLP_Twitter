@@ -24,17 +24,17 @@ The data was obtained through a Twitter API and saved as 24 separate JSON files.
 Many attributes are included in the Twitter API call but I focused on the following:
 1. id_str - to give me a unique identifier for the Tweet
 2. text - to provide the content of the Tweet
-3. lang - to 
+3. lang - to filter to just Tweets in English, as about 75% of the data is in language other than English
 
 ## Exploratory Data Analysis (EDA)
 
 <figure>
-<img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/common_words.png?token=AH6VOJUWDRKZH3CYVYI2ARK7JEMO2">
+<img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/common_words.png?token=AH6VOJW2ENQAM2O4JAOSI527JESPG">
 <figcaption>Based on all words in the corpus</figcaption>
 </figure>
 
 <figure>
-<img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/wordcloud.png?token=AH6VOJX5GNOBJLSSEZK4E2K7JEMRW">
+<img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/wordcloud.png?token=AH6VOJRXCCTHFVN64FHGFHC7JEST4">
 <figcaption>Wordcloud after stopwords have been removed</figcaption>
 </figure>
 
@@ -111,11 +111,11 @@ The goal with Guided LDA is to be able to separate out topics which have smaller
 
 | Document  | Top Topic  | Top Words |
 |---|---|---|
-| 1  | 0 | signed, rare, added, spike, lee, available, michael, 8x10, buy, now  |
-| 2 | 6 | drip, hubby, swoosh, client, kallyyysseetheeducator, amp, bk, doper, mrmenace387, gift |
-| 3 | 0 | dcexaminer, nflcommish, kaepernick7, marching, order, nfl, well, megynkelly, espn, tedcruz |
-| 4 | 2 | juneteenth2020, federal, holiday, sign, make, appoints, petition, fettidbiasi, fevertree, fever |
-| 5 | 0 | red, yeezy, airyeezy, action, 2009, 115, october, men, max, 486978600 |
+| 1  | 0 (Coronavirus) | signed, rare, added, spike, lee, available, michael, 8x10, buy, now  |
+| 2 | 6 (None) | drip, hubby, swoosh, client, kallyyysseetheeducator, amp, bk, doper, mrmenace387, gift |
+| 3 | 0 (Coronavirus) | dcexaminer, nflcommish, kaepernick7, marching, order, nfl, well, megynkelly, espn, tedcruz |
+| 4 | 2 (Climate) | juneteenth2020, federal, holiday, sign, make, appoints, petition, fettidbiasi, fevertree, fever |
+| 5 | 0 (Coronavirus) | red, yeezy, airyeezy, action, 2009, 115, october, men, max, 486978600 |
 
 <br>
 Typically with LDA we want to compute the Model Perplexity and Coherence Score to interpret the model. One of the limitations of the GuidedLDA library used is that there is no such method implemented at this time.
