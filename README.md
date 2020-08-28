@@ -1,6 +1,15 @@
 # Twitter Data Topic Modeling
-## Introduction
 
+## Introduction
+Often times people or companies will proclaim certain values but based on their actions society may perceive them differently.
+
+For example:
+
+<iframe src="https://giphy.com/embed/7PfwoiCwBp6Ra" width="480" height="384" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/ellen-degeneres-questions-ask-7PfwoiCwBp6Ra">via GIPHY</a></p>
+
+Therefore my goal is to identify topics based on categories of interest, see how people/entities relate to those categories, and then consider the societal perception of those qualities.
+
+For this project I am looking at the first phase of this goal: NLP topic modeling
 
 ## Description of raw data
 The data was obtained through a Twitter API and saved as 24 separate JSON files.
@@ -97,9 +106,10 @@ The goal with Guided LDA is to be able to separate out topics which have smaller
 
 <br>
 Typically with LDA we want to compute the Model Perplexity and Coherence Score to interpret the model. One of the limitations of the GuidedLDA library used is that there is no such method implemented at this time.
-
+<br>
 
 ## Future Work
+<br>
 * Perform Part of Speech (POS) tagging
 <br>
 * Evaluate amount of variance explained by the topics
