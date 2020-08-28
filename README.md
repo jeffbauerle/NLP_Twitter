@@ -11,8 +11,24 @@
 
 <img src="https://raw.githubusercontent.com/jeffbauerle/NLP_Twitter/master/images/wordcloud.png">
 
+## NLP Pipeline 
+<br>
+Modules from NLTK library used for preprocessing
+
+1. I lowercased words in the corpus
+
+2. Removed punctuation using punctuation from the string library
+
+3. Lemmatizing: I used the NTLK WordNetLemmatizer() to get the words to their base form
+
+4. Removed urls containing "http"
+
+5. Stopwords - used STOPWORDS from wordcloud library and extended based on wordcloud
+
+
 ## Model
 ### Base Model - Latent Dirichlet allocation (LDA) - [Unsupervised] 
+<br>
 LDA is a "generative probabilistic model" of a collection of composites made up of parts. 
 
 In topic modelling, the composites are documents and the parts are words and/or phrases.
@@ -24,29 +40,31 @@ LDA is suited for Twitter data because it is a way of soft-clustering the data, 
 Note: unlike NMF, LDA takes a Bag of Words (term frequency) matrix as input rather than a TF-IDF.
 
 ### Guided LDA [Semi-Supervised Learning]
-
+<br>
 The goal with Guided LDA is to be able to separate out topics which have smaller representation in the corpus and guide the classification of documents by using seed words for topics in an attempt to guide the model to converge around those terms.
 
-## NLP Pipeline 
-Tokenizing:
 
-Stopping:
 
 ## Findings
 
-INFO:guidedlda:n_documents: 51055
-INFO:guidedlda:vocab_size: 29262
-INFO:guidedlda:n_words: 410607
-INFO:guidedlda:n_topics: 7
-INFO:guidedlda:n_iter: 100
 
+| GuidedLDA Parameters  | Value   | 
+|---|---|
+| n_documents  | 51055  |  
+|  vocab_size | 29262  | 
+|  n_words | 410607  |  
+|  n_topics | 7 |  
+|  n_iter | 100 | 
 
-INFO:guidedlda:<0> log likelihood: -5228371
-INFO:guidedlda:<20> log likelihood: -3328349
-INFO:guidedlda:<40> log likelihood: -3278971
-INFO:guidedlda:<60> log likelihood: -3250502
-INFO:guidedlda:<80> log likelihood: -3233560
-INFO:guidedlda:<99> log likelihood: -3219670
+| GuidedLDA Part  | Calculation  | Value |
+|---|---|---|
+| <0>  | log likelihood:  | -5228371  |
+| <20> | log likelihood: | -3328349 |
+| <40> | log likelihood: | -3278971 |
+| <60> | log likelihood: | -3250502 |
+| <80> | log likelihood: | -3233560 |
+| <99> | log likelihood: | -3219670 |
+
 
 coronavirus
 Topic 0: time size wearing max men available via now people clothes
@@ -78,24 +96,26 @@ Typically with LDA we want to compute the Model Perplexity and Coherence Score t
 
 
 ## Future Work
-Perform Part of Speech (POS) tagging
+* Perform Part of Speech (POS) tagging
 <br>
-Evaluate amount of variance explained by the topics
+* Evaluate amount of variance explained by the topics
 <br>
-Try an NMF model and plot the Silhouette scores
+* Try an NMF model and plot the Silhouette scores
 <br>
-Perform sentiment analysis using VADER
-Emoji consideration for both sentiment analysis and potential application to diversity category.
+* Perform sentiment analysis using VADER
+* Emoji consideration for both sentiment analysis and potential application to diversity category.
 <br>
-Visualize the topics-keywords using pyLDAvis library
+* Visualize the topics-keywords using pyLDAvis library
 <br>
-Add test scripts
+* Add test scripts
 <br>
-Add classes
+* Add classes
 <br>
-Breakout scripts
+* Breakout scripts
 <br>
-Incorporate model persistence through pickling
+* Incorporate model persistence through pickling
+<br>
+* Retweet consideration
 
 
 
