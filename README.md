@@ -7,7 +7,7 @@ Often times people or companies will proclaim certain values, but based on their
 
 For example:
 
-Okay Ellen DeGeneres: 
+Okay Ellen DeGeneres, I have a question for you: 
 
 ![alt text](https://media.giphy.com/media/7PfwoiCwBp6Ra/giphy.gif)
 
